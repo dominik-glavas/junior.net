@@ -1,6 +1,5 @@
 ﻿using AbySalto.Junior.Models.Currencies;
 using AbySalto.Junior.Models.OrderArticles;
-using AbySalto.Junior.Models.Orders;
 
 namespace AbySalto.Junior.Models.Articles
 {
@@ -13,11 +12,11 @@ namespace AbySalto.Junior.Models.Articles
         public Currency Currency { get; set; }
         public ICollection<OrderArticle> OrderArticles { get; set; } = new List<OrderArticle>();
 
-        public Article(string name, decimal price, Currency currency)
+        public Article(string name, decimal price, int currencyId)
         {
             Name = name;
             Price = price;
-            Currency = currency;
+            CurrencyId = currencyId;
         }
 
         public Article()

@@ -1,6 +1,6 @@
-﻿using AbySalto.Junior.Models.Articles;
-using AbySalto.Junior.Models.Currencies;
+﻿using AbySalto.Junior.Models.Currencies;
 using AbySalto.Junior.Models.OrderArticles;
+using AbySalto.Junior.Models.Orders.DTOs;
 
 namespace AbySalto.Junior.Models.Orders
 {
@@ -26,16 +26,22 @@ namespace AbySalto.Junior.Models.Orders
         public int CurrencyId { get; set; }
         public Currency Currency { get; set; }
 
-        public Order(string customer, OrderStatus status, DateTime orderTime, PaymentMethod paymentMethod, string address, string phoneNumber, string remark, Currency currency)
+        public Order(CreateOrderDTO dto)
         {
-            CustomerName = customer;
-            Status = status;
-            OrderTime = orderTime;
-            PaymentMethod = paymentMethod;
-            Address = address;
-            PhoneNumber = phoneNumber;
-            Remark = remark;
-            Currency = currency;
+            CustomerName = dto.CustomerName;
+            Status = dto.Status;
+            OrderTime = DateTime.Now;
+            PaymentMethod = dto.PaymentMethod;
+            Address = dto.Address;
+            PhoneNumber = dto.PhoneNumber;
+            Remark = dto.Remark;
+            OrderArticles = dto.OrderArticles.Select(oa => new OrderArticle
+                {
+                    ArticleId = oa.ArticleId,
+                    Quantity = oa.Quantity
+                })
+                .ToList();
+            CurrencyId = dto.CurrencyId;
         }
 
         public Order() { }
