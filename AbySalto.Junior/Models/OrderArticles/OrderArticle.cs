@@ -10,7 +10,7 @@ namespace AbySalto.Junior.Models.OrderArticles
 
         public int ArticleId { get; set; }
         public Article Article { get; set; }
-        public int quantity { get; set; }
+        public int Quantity { get; set; }
 
     }
 }
