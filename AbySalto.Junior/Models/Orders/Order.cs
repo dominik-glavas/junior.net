@@ -23,7 +23,7 @@ namespace AbySalto.Junior.Models.Orders
 
         public ICollection<OrderArticle> OrderArticles { get; set; } = new List<OrderArticle>();
 
-        public decimal TotalPrice { get; set; }
+        public int CurrencyId { get; set; }
         public Currency Currency { get; set; }
 
         public Order(string customer, OrderStatus status, DateTime orderTime, PaymentMethod paymentMethod, string address, string phoneNumber, string remark, Currency currency)
